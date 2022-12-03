@@ -1,19 +1,20 @@
 -- SCHEMA: webapp
 
--- DROP SCHEMA IF EXISTS webapp ;
+DROP SCHEMA IF EXISTS webapp cascade;
 
 CREATE SCHEMA IF NOT EXISTS webapp
     AUTHORIZATION postgres;
 
--- Table: webapp.employee_info
+-- Table: webapp.employee
 
--- DROP TABLE IF EXISTS webapp.employee_info;
+-- DROP TABLE IF EXISTS webapp.employee;
 
-CREATE TABLE IF NOT EXISTS webapp.employee_info
+CREATE TABLE IF NOT EXISTS webapp.employee
 (
     emp_id character varying(30) COLLATE pg_catalog."default" NOT NULL,
     emp_rank character varying(100) COLLATE pg_catalog."default",
     trade character varying(100) COLLATE pg_catalog."default",
+    emp_btr character varying(100) COLLATE pg_catalog."default",
     emp_name character varying(100) COLLATE pg_catalog."default",
     father_name character varying(100) COLLATE pg_catalog."default",
     blood_group character varying(100) COLLATE pg_catalog."default",
@@ -44,12 +45,12 @@ CREATE TABLE IF NOT EXISTS webapp.employee_info
     vehicle character varying(100) COLLATE pg_catalog."default",
     computer_knowledge character varying(100) COLLATE pg_catalog."default",
     misc character varying(100) COLLATE pg_catalog."default",
-    CONSTRAINT employee_info_pkey PRIMARY KEY (emp_id)
+    CONSTRAINT employee_pkey PRIMARY KEY (emp_id)
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS webapp.employee_info
+ALTER TABLE IF EXISTS webapp.employee
     OWNER to postgres;
 
 
@@ -60,7 +61,7 @@ ALTER TABLE IF EXISTS webapp.employee_info
 
 CREATE TABLE IF NOT EXISTS webapp.employee_address
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     emp_id character varying(30) COLLATE pg_catalog."default" NOT NULL,
     address_type "char" NOT NULL,
     village character varying(100) COLLATE pg_catalog."default",
@@ -71,7 +72,7 @@ CREATE TABLE IF NOT EXISTS webapp.employee_address
     pin character varying(10) COLLATE pg_catalog."default",
     CONSTRAINT employee_address_pkey PRIMARY KEY (id),
     CONSTRAINT employee_address_emp_id_fkey FOREIGN KEY (emp_id)
-        REFERENCES webapp.employee_info (emp_id) MATCH SIMPLE
+        REFERENCES webapp.employee (emp_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID
@@ -90,7 +91,7 @@ ALTER TABLE IF EXISTS webapp.employee_address
 
 CREATE TABLE IF NOT EXISTS webapp.employee_course
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     emp_id character varying(30) COLLATE pg_catalog."default" NOT NULL,
     course_name character varying(100) COLLATE pg_catalog."default",
     start_date character varying(100) COLLATE pg_catalog."default",
@@ -99,7 +100,7 @@ CREATE TABLE IF NOT EXISTS webapp.employee_course
     remarks character varying(100) COLLATE pg_catalog."default",
     CONSTRAINT employee_course_info_pkey PRIMARY KEY (id),
     CONSTRAINT employee_course_emp_id_fkey FOREIGN KEY (emp_id)
-        REFERENCES webapp.employee_info (emp_id) MATCH SIMPLE
+        REFERENCES webapp.employee (emp_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID
@@ -118,7 +119,7 @@ ALTER TABLE IF EXISTS webapp.employee_course
 
 CREATE TABLE IF NOT EXISTS webapp.employee_duty
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     emp_id character varying(30) COLLATE pg_catalog."default",
     ere_detail character varying(100) COLLATE pg_catalog."default",
     start_date character varying(20) COLLATE pg_catalog."default",
@@ -126,7 +127,7 @@ CREATE TABLE IF NOT EXISTS webapp.employee_duty
     remarks character varying(100) COLLATE pg_catalog."default",
     CONSTRAINT employee_duty_info_pkey PRIMARY KEY (id),
     CONSTRAINT employee_duty_emp_id_fkey FOREIGN KEY (emp_id)
-        REFERENCES webapp.employee_info (emp_id) MATCH SIMPLE
+        REFERENCES webapp.employee (emp_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID
@@ -145,7 +146,7 @@ ALTER TABLE IF EXISTS webapp.employee_duty
 
 CREATE TABLE IF NOT EXISTS webapp.employee_family
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     member_name character varying(100) COLLATE pg_catalog."default",
     gender "char",
     age character varying(50) COLLATE pg_catalog."default",
@@ -153,7 +154,7 @@ CREATE TABLE IF NOT EXISTS webapp.employee_family
     emp_id character varying(30) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT employee_family_info_pkey PRIMARY KEY (id),
     CONSTRAINT employee_family_emp_id_fkey FOREIGN KEY (emp_id)
-        REFERENCES webapp.employee_info (emp_id) MATCH SIMPLE
+        REFERENCES webapp.employee (emp_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID
@@ -172,14 +173,14 @@ ALTER TABLE IF EXISTS webapp.employee_family
 
 CREATE TABLE IF NOT EXISTS webapp.employee_punishment
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     emp_id character varying(30) COLLATE pg_catalog."default" NOT NULL,
     punishment_awarded character varying(100) COLLATE pg_catalog."default",
     offence character varying(100) COLLATE pg_catalog."default",
     remarks character varying(100) COLLATE pg_catalog."default",
     CONSTRAINT employee_punishment_info_pkey PRIMARY KEY (id),
     CONSTRAINT employee_punishment_emp_id_fkey FOREIGN KEY (emp_id)
-        REFERENCES webapp.employee_info (emp_id) MATCH SIMPLE
+        REFERENCES webapp.employee (emp_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID
@@ -196,16 +197,16 @@ ALTER TABLE IF EXISTS webapp.employee_punishment
 
 -- DROP TABLE IF EXISTS webapp.employee_sports;
 
-CREATE TABLE IF NOT EXISTS webapp.employee_sports
+CREATE TABLE IF NOT EXISTS webapp.employee_sport
 (
-    id bigint NOT NULL,
+    id bigserial NOT NULL,
     emp_id character varying(30) COLLATE pg_catalog."default" NOT NULL,
     sport_played character varying(100) COLLATE pg_catalog."default",
     sport_level character varying(100) COLLATE pg_catalog."default",
     remarks character varying(100) COLLATE pg_catalog."default",
     CONSTRAINT employee_sports_pkey PRIMARY KEY (id),
     CONSTRAINT employee_sports_emp_id_fkey FOREIGN KEY (emp_id)
-        REFERENCES webapp.employee_info (emp_id) MATCH SIMPLE
+        REFERENCES webapp.employee (emp_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID

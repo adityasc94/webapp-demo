@@ -1,0 +1,1105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- Datatable -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.dataTables.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <link rel="stylesheet" type="text/css" href="offcanvas.css">
+</head>
+
+<body>
+
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-2 mb-3 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 text-dark text-decoration-none">
+            <span class="h2">INDL KINDERED ROLL</span>
+        </a>
+    </header>
+</div>
+
+<main class="container">
+    <div>
+        <!-- Button trigger modal -->
+        <div class="col-md-12 text-center">
+            <button type="button" id="emp-add-btn" class="btn btn-success mb-3">
+                <img class="bi" src="person-add.svg">
+                Add New
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="employeeModalLabel">Add/Update Employee Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <form class="row g-3" id="emp-form">
+                                <div class="col-md-3">
+                                    <label for="empId" class="form-label">Number</label>
+                                    <input type="text" class="form-control" id="empId">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="empRank" class="form-label">Rank</label>
+                                    <input type="text" class="form-control" id="empRank">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="trade" class="form-label">Trade</label>
+                                    <input type="text" class="form-control" id="trade">
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="empName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="empName">
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <label for="fatherName" class="form-label">Father's Name</label>
+                                    <input type="text" class="form-control" id="fatherName">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="motherName" class="form-label">Mother's Name</label>
+                                    <input type="text" class="form-control" id="motherName">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="bloodGroup" class="form-label">Blood Group</label>
+                                    <input type="text" class="form-control" id="bloodGroup">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="bankAccNum" class="form-label">Bank A/C</label>
+                                    <input type="text" class="form-control" id="bankAccNum">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="panNum" class="form-label">PAN Card</label>
+                                    <input type="text" class="form-control" id="panNum">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="aadhaarNum" class="form-label">Aadhaar Card</label>
+                                    <input type="text" class="form-control" id="aadhaarNum">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="nokDetails" class="form-label">NOK (Details)</label>
+                                    <input type="text" class="form-control" id="nokDetails">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="mobileNumNok" class="form-label">Mobile No (NOK)</label>
+                                    <input type="text" class="form-control" id="mobileNumNok">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="mobileNumOwn" class="form-label">Mobile No (Own)</label>
+                                    <input type="text" class="form-control" id="mobileNumOwn">
+                                </div>
+
+                                <hr>
+                                <div class="col-6">
+                                    <label class="form-label h5">Permanent Home Address</label>
+                                    <div class="row mb-3">
+                                        <label for="permVillage" class="col-sm-2 col-form-label">Village</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="permVillage">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="permPost" class="col-sm-2 col-form-label">Post</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="permPost">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="permTehsil" class="col-sm-2 col-form-label">Tehsil</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="permTehsil">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="permDistrict" class="col-sm-2 col-form-label">District</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="permDistrict">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="permState" class="col-sm-2 col-form-label">State</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="permState">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="permPin" class="col-sm-2 col-form-label">PIN</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="permPin">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <label class="form-label h5">Present Home Address</label>
+                                    <div class="row mb-3">
+                                        <label for="tempVillage" class="col-sm-2 col-form-label">Village</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="tempVillage">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="tempPost" class="col-sm-2 col-form-label">Post</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="tempPost">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="tempTehsil" class="col-sm-2 col-form-label">Tehsil</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="tempTehsil">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="tempDistrict" class="col-sm-2 col-form-label">District</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="tempDistrict">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="tempState" class="col-sm-2 col-form-label">State</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="tempState">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="tempPin" class="col-sm-2 col-form-label">PIN</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="tempPin">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <label class="form-label h4">Details of Family Members</label>
+                                <div class="col-6">
+                                    <div class="row mb-3">
+                                        <label for="fmName1" class="col-sm-1 col-form-label">1. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="fmName1" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="fmName2" class="col-sm-1 col-form-label">2. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="fmName2" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="fmName3" class="col-sm-1 col-form-label">3. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="fmName3" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="fmName4" class="col-sm-1 col-form-label">4. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="fmName4" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="fmName5" class="col-sm-1 col-form-label">5. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="fmName5" placeholder="Name">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-2">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <select id="fmGender1" class="form-select">
+                                                <option selected value="">Select Gender</option>
+                                                <option value="M">M</option>
+                                                <option value="F">F</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <select id="fmGender2" class="form-select">
+                                                <option selected value="">Select Gender</option>
+                                                <option value="M">M</option>
+                                                <option value="F">F</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <select id="fmGender3" class="form-select">
+                                                <option selected value="">Select Gender</option>
+                                                <option value="M">M</option>
+                                                <option value="F">F</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <select id="fmGender4" class="form-select">
+                                                <option selected value="">Select Gender</option>
+                                                <option value="M">M</option>
+                                                <option value="F">F</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <select id="fmGender5" class="form-select">
+                                                <option selected value="">Select Gender</option>
+                                                <option value="M">M</option>
+                                                <option value="F">F</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-1">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="fmAge1" placeholder="Age">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="fmAge2" placeholder="Age">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="fmAge3" placeholder="Age">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="fmAge4" placeholder="Age">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="fmAge5" placeholder="Age">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-3">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="fmQlfcn1" placeholder="Qualification">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="fmQlfcn2" placeholder="Qualification">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="fmQlfcn3" placeholder="Qualification">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="fmQlfcn4" placeholder="Qualification">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="fmQlfcn5" placeholder="Qualification">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="col-md-4">
+                                    <label for="height" class="form-label">Height</label>
+                                    <input type="text" class="form-control" id="height">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="weight" class="form-label">Weight</label>
+                                    <input type="text" class="form-control" id="weight">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="lifeStyleDisease" class="form-label">Lifestyle Disease (If Any)</label>
+                                    <input type="text" class="form-control" id="lifeStyleDisease">
+                                </div>
+
+                                <hr>
+                                <label class="form-label h4">Professional Details</label>
+                                <div class="col-md-4">
+                                    <label for="dateOfBirth" class="form-label">DOB</label>
+                                    <input type="text" class="form-control date-input" id="dateOfBirth" readonly="readonly">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="dateOfEntry" class="form-label">DOE</label>
+                                    <input type="text" class="form-control date-input" id="dateOfEntry" readonly="readonly">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="tradeCl" class="form-label">Trade CL</label>
+                                    <input type="text" class="form-control" id="tradeCl">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="civQualification" class="form-label">Civ Qualification</label>
+                                    <input type="text" class="form-control" id="civQualification">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="mr" class="form-label">MR</label>
+                                    <input type="text" class="form-control" id="mr">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="idCardNum" class="form-label">I/Card No</label>
+                                    <input type="text" class="form-control" id="idCardNum">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="idCardIssuer" class="form-label">I/Card Issued By</label>
+                                    <input type="text" class="form-control" id="idCardIssuer">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="idCardIssueDate" class="form-label">Date of Issue</label>
+                                    <input type="text" class="form-control date-input" id="idCardIssueDate" readonly="readonly">
+                                </div>
+
+                                <hr>
+                                <label class="form-label h4">Attend of Courses/Cadre with grading</label>
+                                <div class="col-4">
+                                    <div class="row mb-3">
+                                        <label for="courseName1" class="col-sm-1 col-form-label">1. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="courseName1" placeholder="Course/Cadre Name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="courseName2" class="col-sm-1 col-form-label">2. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="courseName2" placeholder="Course/Cadre Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="courseStart1" placeholder="From">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="courseStart2" placeholder="From">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="courseEnd1" placeholder="To">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="courseEnd2" placeholder="To">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="courseGrade1" placeholder="Grading">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="courseGrade2" placeholder="Grading">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="courseRemark1" placeholder="Remarks">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="courseRemark2" placeholder="Remarks">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <hr>
+                                <label class="form-label h4">ERE Duty (If Any)</label>
+                                <div class="col-5">
+                                    <div class="row mb-3">
+                                        <label for="ere1" class="col-sm-1 col-form-label">1. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="ere1" placeholder="ERE">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="ere2" class="col-sm-1 col-form-label">2. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="ere2" placeholder="ERE">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="ereStart1" placeholder="From">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="ereStart2" placeholder="From">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="ereEnd1" placeholder="To">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="ereEnd2" placeholder="To">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="ereRemark1" placeholder="Remarks">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="ereRemark2" placeholder="Remarks">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <hr>
+                                <label class="form-label h4">Punishment Awarded (If Any)</label>
+                                <div class="col-5">
+                                    <div class="row mb-3">
+                                        <label for="pnshAwr1" class="col-sm-1 col-form-label">1. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="pnshAwr1" placeholder="Punishment Awarded">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="pnshAwr2" class="col-sm-1 col-form-label">2. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="pnshAwr2" placeholder="Punishment Awarded">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="offence1" placeholder="Offence">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="offence2" placeholder="Offence">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="pnshRemark1" placeholder="Remarks">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="pnshRemark2" placeholder="Remarks">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <hr>
+                                <div class="col-md-4">
+                                    <label for="leaveEncashed" class="form-label">Lve Encashed (Till Date)</label>
+                                    <input type="text" class="form-control" id="leaveEncashed">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="impApptsInService" class="form-label">Imp Appts done in Service</label>
+                                    <input type="text" class="form-control" id="impApptsInService">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="hobbies" class="form-label">Hobbies</label>
+                                    <input type="text" class="form-control" id="hobbies">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="civCase" class="form-label">Civ Case</label>
+                                    <input type="text" class="form-control" id="civCase">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="familyFued" class="form-label">Family Fued</label>
+                                    <input type="text" class="form-control" id="familyFued">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="vehicle" class="form-label">Two/Four Wheeler</label>
+                                    <input type="text" class="form-control" id="vehicle">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="computerKnowledge" class="form-label">Computer Knowledge</label>
+                                    <input type="text" class="form-control" id="computerKnowledge">
+                                </div>
+
+                                <hr>
+                                <label class="form-label h4">Sports</label>
+                                <div class="col-5">
+                                    <div class="row mb-3">
+                                        <label for="sportPlayed1" class="col-sm-1 col-form-label">1. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="sportPlayed1" placeholder="Game Played">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="sportPlayed2" class="col-sm-1 col-form-label">2. </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" class="form-control" id="sportPlayed2" placeholder="Game Played">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="sportLevel1" placeholder="Level">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="sportLevel2" placeholder="Level">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="sportRemark1" placeholder="Remarks">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="sportRemark2" placeholder="Remarks">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="col-12">
+                                    <label for="misc" class="form-label">Misc</label>
+                                    <input type="text" class="form-control" id="misc">
+                                </div>
+                            </form>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" form="emp-form" class="btn btn-primary" id="emp-submit-btn">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table id="employeeTable" class="display" style="width:100%">
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>Trade</th>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Blood Group</th>
+                <th>DOB</th>
+                <th>DOE</th>
+                <th>Mobile No (Own)</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+        </table>
+
+    </div>
+</main>
+</body>
+
+<script>
+    var employee_table;
+    function loadEmployeeTableData() {
+        var getAllEmpUrl = 'http://localhost:8080/employee/get-all';
+        $.ajax({
+            url: getAllEmpUrl,
+            type: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (data) {
+                employee_table.clear().draw();
+                employee_table.rows.add(data.employeeList).draw();
+            },
+            error: function (e) {
+                console.log('error: ' + JSON.stringify(e));
+                alert('Failed to load data!')
+            }
+        });
+    }
+
+    function constructEmployeeObj() {
+        var employee = {
+            "id": $('#empId').val().trim(),
+            "empRank": $('#empRank').val(),
+            "trade": $('#trade').val(),
+            "empName": $('#empName').val(),
+            "fatherName": $('#fatherName').val(),
+            "bloodGroup": $('#bloodGroup').val(),
+            "motherName": $('#motherName').val(),
+            "bankAccNum": $('#bankAccNum').val(),
+            "nokDetails": $('#nokDetails').val(),
+            "panNum": $('#panNum').val(),
+            "mobileNumNok": $('#mobileNumNok').val(),
+            "mobileNumOwn": $('#mobileNumOwn').val(),
+            "aadhaarNum": $('#aadhaarNum').val(),
+            "drivingLicNum": $('#drivingLicNum').val(),
+            "height": $('#height').val(),
+            "weight": $('#weight').val(),
+            "lifeStyleDisease": $('#lifeStyleDisease').val(),
+            "dateOfBirth": $('#dateOfBirth').val(),
+            "dateOfEntry": $('#dateOfEntry').val(),
+            "tradeCl": $('#tradeCl').val(),
+            "civQualification": $('#civQualification').val(),
+            "mr": $('#mr').val(),
+            "idCardNum": $('#idCardNum').val(),
+            "idCardIssuer": $('#idCardIssuer').val(),
+            "idCardIssueDate": $('#idCardIssueDate').val(),
+            "leaveEncashed": $('#leaveEncashed').val(),
+            "impApptsInService": $('#impApptsInService').val(),
+            "hobbies": $('#hobbies').val(),
+            "civCase": $('#civCase').val(),
+            "familyFued": $('#familyFued').val(),
+            "vehicle": $('#vehicle').val(),
+            "computerKnowledge": $('#computerKnowledge').val(),
+            "misc": $('#misc').val(),
+            "employeeAddresses": [],
+            "employeeFamilies": [],
+            "employeeCourses": [],
+            "employeeDuties": [],
+            "employeePunishments": [],
+            "employeeSports": []
+        }
+        var permAddress = {};
+        permAddress.village = $('#permVillage').val();
+        permAddress.post = $('#permPost').val();
+        permAddress.tehsil = $('#permTehsil').val();
+        permAddress.district = $('#permDistrict').val();
+        permAddress.state = $('#permState').val();
+        permAddress.pin = $('#permPin').val();
+        permAddress.addressType = 'P';
+        employee.employeeAddresses.push(permAddress);
+        var tempAddress = {};
+        tempAddress.village = $('#tempVillage').val();
+        tempAddress.post = $('#tempPost').val();
+        tempAddress.tehsil = $('#tempTehsil').val();
+        tempAddress.district = $('#tempDistrict').val();
+        tempAddress.state = $('#tempState').val();
+        tempAddress.pin = $('#tempPin').val();
+        tempAddress.addressType = 'T';
+        employee.employeeAddresses.push(tempAddress);
+        for (var i=1; i<=5; i++) {
+            if ($('#fmName' + i).val())  {
+                var familyMember = {};
+                familyMember.memberName = $('#fmName' + i).val();
+                familyMember.gender = $('#fmGender' + i).val();
+                familyMember.age = $('#fmAge' + i).val();
+                familyMember.qualification = $('#fmQlfcn' + i).val();
+                employee.employeeFamilies.push(familyMember);
+            }
+        }
+        for (var i=1; i<=2; i++) {
+            if ($('#courseName' + i).val()) {
+                var course = {};
+                course.courseName = $('#courseName' + i).val();
+                course.startDate = $('#courseStart' + i).val();
+                course.endDate = $('#courseEnd' + i).val();
+                course.grading = $('#courseGrade' + i).val();
+                course.remarks = $('#courseRemark' + i).val();
+                employee.employeeCourses.push(course);
+            }
+        }
+        for (var i=1; i<=2; i++) {
+            if ($('#ere' + i).val()) {
+                var ereDuty = {};
+                ereDuty.ereDetail = $('#ere' + i).val();
+                ereDuty.startDate = $('#ereStart' + i).val();
+                ereDuty.endDate = $('#ereEnd' + i).val();
+                ereDuty.remarks = $('#ereRemark' + i).val();
+                employee.employeeDuties.push(ereDuty);
+            }
+        }
+        for (var i=1; i<=2; i++) {
+            if ($('#pnshAwr' + i).val()) {
+                var pnshment = {};
+                pnshment.punishmentAwarded = $('#pnshAwr' + i).val();
+                pnshment.offence = $('#offence' + i).val();
+                pnshment.remarks = $('#pnshRemark' + i).val();
+                employee.employeePunishments.push(pnshment);
+            }
+        }
+        for (var i=1; i<=2; i++) {
+            if ($('#sportPlayed' + i).val()) {
+                var sport = {};
+                sport.sportPlayed = $('#sportPlayed' + i).val();
+                sport.sportLevel = $('#sportLevel' + i).val();
+                sport.remarks = $('#sportRemark' + i).val();
+                employee.employeeSports.push(sport);
+            }
+        }
+        return employee;
+    }
+
+    function populateEmployeeForm(employee) {
+        $('#empId').val(employee.id);
+        $('#empRank').val(employee.empRank);
+        $('#trade').val(employee.trade);
+        $('#empName').val(employee.empName);
+        $('#fatherName').val(employee.fatherName);
+        $('#bloodGroup').val(employee.bloodGroup);
+        $('#motherName').val(employee.motherName);
+        $('#bankAccNum').val(employee.bankAccNum);
+        $('#nokDetails').val(employee.nokDetails);
+        $('#panNum').val(employee.panNum);
+        $('#mobileNumNok').val(employee.mobileNumNok);
+        $('#mobileNumOwn').val(employee.mobileNumOwn);
+        $('#aadhaarNum').val(employee.aadhaarNum);
+        $('#drivingLicNum').val(employee.drivingLicNum);
+        $('#height').val(employee.height);
+        $('#weight').val(employee.weight);
+        $('#lifeStyleDisease').val(employee.lifeStyleDisease);
+        $('#dateOfBirth').val(employee.dateOfBirth);
+        $('#dateOfEntry').val(employee.dateOfEntry);
+        $('#tradeCl').val(employee.tradeCl);
+        $('#civQualification').val(employee.civQualification);
+        $('#mr').val(employee.mr);
+        $('#idCardNum').val(employee.idCardNum);
+        $('#idCardIssuer').val(employee.idCardIssuer);
+        $('#idCardIssueDate').val(employee.idCardIssueDate);
+        $('#leaveEncashed').val(employee.leaveEncashed);
+        $('#impApptsInService').val(employee.impApptsInService);
+        $('#hobbies').val(employee.hobbies);
+        $('#civCase').val(employee.civCase);
+        $('#familyFued').val(employee.familyFued);
+        $('#vehicle').val(employee.vehicle);
+        $('#computerKnowledge').val(employee.computerKnowledge);
+        $('#misc').val(employee.misc);
+        if (Array.isArray(employee.employeeAddresses)) {
+            for (var i=1; i<=2 && employee.employeeAddresses[i-1]; i++) {
+                var address = employee.employeeAddresses[i-1];
+                if (address.addressType == 'P') {
+                    $('#permVillage').val(address.village);
+                    $('#permPost').val(address.post);
+                    $('#permTehsil').val(address.tehsil);
+                    $('#permDistrict').val(address.district);
+                    $('#permState').val(address.state);
+                    $('#permPin').val(address.pin);
+                } else if (address.addressType == 'T') {
+                    $('#tempVillage').val(address.village);
+                    $('#tempPost').val(address.post);
+                    $('#tempTehsil').val(address.tehsil);
+                    $('#tempDistrict').val(address.district);
+                    $('#tempState').val(address.state);
+                    $('#tempPin').val(address.pin);
+                }
+            }
+        }
+        if (Array.isArray(employee.employeeFamilies)) {
+            for (var i=1; i<=5 && employee.employeeFamilies[i-1]; i++) {
+                var familyMember = employee.employeeFamilies[i-1];
+                $('#fmName' + i).val(familyMember.memberName);
+                $('#fmGender' + i).val(familyMember.gender);
+                $('#fmAge' + i).val(familyMember.age);
+                $('#fmQlfcn' + i).val(familyMember.qualification);
+            }
+        }
+        if (Array.isArray(employee.employeeCourses)) {
+            for (var i=1; i<=2 && employee.employeeCourses[i-1]; i++) {
+                var course = employee.employeeCourses[i-1];
+                $('#courseName' + i).val(course.courseName);
+                $('#courseStart' + i).val(course.startDate);
+                $('#courseEnd' + i).val(course.endDate);
+                $('#courseGrade' + i).val(course.grading);
+                $('#courseRemark' + i).val(course.remarks);
+            }
+        }
+        if (Array.isArray(employee.employeeDuties)) {
+            for (var i=1; i<=2 && employee.employeeDuties[i-1]; i++) {
+                var ereDuty = employee.employeeDuties[i-1];
+                $('#ere' + i).val(ereDuty.ereDetail);
+                $('#ereStart' + i).val(ereDuty.startDate);
+                $('#ereEnd' + i).val(ereDuty.endDate);
+                $('#ereRemark' + i).val(ereDuty.remarks);
+            }
+        }
+        if (Array.isArray(employee.employeePunishments)) {
+            for (var i=1; i<=2 && employee.employeePunishments[i-1]; i++) {
+                var pnshment = employee.employeePunishments[i-1];
+                $('#pnshAwr' + i).val(pnshment.punishmentAwarded);
+                $('#offence' + i).val(pnshment.offence);
+                $('#pnshRemark' + i).val(pnshment.remarks);
+            }
+        }
+        if (Array.isArray(employee.employeeSports)) {
+            for (var i=1; i<=2 && employee.employeeSports[i-1]; i++) {
+                var sport = employee.employeeSports[i-1];
+                $('#sportPlayed' + i).val(sport.sportPlayed);
+                $('#sportLevel' + i).val(sport.sportLevel);
+                $('#sportRemark' + i).val(sport.remarks);
+            }
+        }
+    }
+
+    function setSubmitBtnAction(action) {
+        var submitBtn = $('#emp-submit-btn');
+        submitBtn.data('btn-action', action);
+        if (action == 'view') {
+            submitBtn.attr('disabled',true);
+        } else {
+            submitBtn.removeAttr('disabled');
+        }
+    }
+
+    $(document).ready(function() {
+        $('.date-input').datepicker({
+            format: 'dd/mm/yyyy',
+            startView: 2,
+            clearBtn: true,
+            autoclose: true
+        });
+
+        $('#employeeTable thead tr')
+            .clone(true)
+            .addClass('filters')
+            .appendTo('#employeeTable thead');
+
+        employee_table = $('#employeeTable').DataTable({
+            orderCellsTop: true,
+            fixedHeader: true,
+            pageLength: 20,
+            lengthMenu: [20, 30, 50, 75, 100],
+            order: [],
+            paging: true,
+            searching: true,
+            info: true,
+            columns: [
+                {data: "id"},
+                {data: "empRank"},
+                {data: "trade"},
+                {data: "empName"},
+                {data: "bloodGroup"},
+                {data: "dateOfBirth"},
+                {data: "dateOfEntry"},
+                {data: "mobileNumOwn"},
+                {
+                    data: "id", width: "140px", render: function (data) {
+                        return '<button type="button" class="btn btn-secondary btn-sm mx-1 emp-view-btn" value="'+ data +'"><img src="eye.svg"></button>'
+                            + '<button type="button" class="btn btn-warning btn-sm mx-1 emp-edit-btn" value="'+ data +'"><img src="pencil-square.svg"></button>'
+                            + '<button type="button" class="btn btn-danger btn-sm mx-1 emp-del-btn" value="'+ data +'"><img src="trash.svg"></button>';
+                    }
+                }
+            ],
+            initComplete: function () {
+                var api = this.api();
+
+                // For each column
+                api
+                    .columns()
+                    .eq(0)
+                    .each(function (colIdx) {
+                        // Set the header cell to contain the input element
+                        var cell = $('.filters th').eq(
+                            $(api.column(colIdx).header()).index()
+                        );
+                        var title = $(cell).text();
+                        $(cell).html('<input type="text" placeholder="' + title + '" />');
+
+                        // On every keypress in this input
+                        $(
+                            'input',
+                            $('.filters th').eq($(api.column(colIdx).header()).index())
+                        )
+                            .off('keyup change')
+                            .on('change', function (e) {
+                                // Get the search value
+                                $(this).attr('title', $(this).val());
+                                var regexr = '({search})'; //$(this).parents('th').find('select').val();
+
+                                var cursorPosition = this.selectionStart;
+                                // Search the column for that value
+                                api
+                                    .column(colIdx)
+                                    .search(
+                                        this.value != ''
+                                            ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                            : '',
+                                        this.value != '',
+                                        this.value == ''
+                                    )
+                                    .draw();
+                            })
+                            .on('keyup', function (e) {
+                                e.stopPropagation();
+
+                                $(this).trigger('change');
+                                $(this)
+                                    .focus()[0]
+                                    .setSelectionRange(cursorPosition, cursorPosition);
+                            });
+                    });
+            }
+        });
+
+        loadEmployeeTableData();
+
+        $('#emp-form').submit(function(e){
+            var btnAction = $('#emp-submit-btn').data('btn-action');
+            var url;
+            if (btnAction == 'add') {
+                url = 'http://localhost:8080/employee/add';
+            } else if (btnAction == 'edit') {
+                url = 'http://localhost:8080/employee/update';
+            }
+            e.preventDefault();
+            var reqObj = {
+                "employee": {}
+            };
+            reqObj.employee = constructEmployeeObj();
+            console.log(JSON.stringify(reqObj));
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: JSON.stringify(reqObj),
+                dataType: 'json',
+                contentType: 'application/json',
+                success:function(data){
+                    console.log(data);
+                    $('#employeeModal').modal('hide');
+                    loadEmployeeTableData();
+                },
+                error:function(data){
+                    console.log('error: ' + JSON.stringify(e));
+                    alert('Failed to add/update!')
+                }
+            });
+        });
+
+        $(document).on('click', '#emp-add-btn', function(e) {
+            setSubmitBtnAction('add');
+            $("#emp-form").trigger('reset');
+            $('#empId').removeAttr('disabled');
+            $('#employeeModal').modal('show');
+        });
+
+        $(document).on('click', '.emp-view-btn', function(e) {
+            setSubmitBtnAction('view');
+            $('#emp-form').trigger('reset');
+            var empId = $(this).val();
+            var getEmpUrl = 'http://localhost:8080/employee/get?empId='+empId;
+            $.ajax({
+                url: getEmpUrl,
+                type: 'GET',
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (data) {
+                    if (Array.isArray(data.employeeList) && data.employeeList[0]) {
+                        populateEmployeeForm(data.employeeList[0]);
+                        $('#empId').attr('disabled', true);
+                        $('#employeeModal').modal('show');
+                    } else {
+                        alert("Failed to load data!");
+                    }
+                },
+                error: function (e) {
+                    console.log('error: ' + JSON.stringify(e));
+                    alert('Failed to load data!')
+                }
+            });
+        });
+
+        $(document).on('click', '.emp-edit-btn', function(e) {
+            setSubmitBtnAction('edit');
+            $('#emp-form').trigger('reset');
+            var empId = $(this).val();
+            var getEmpUrl = 'http://localhost:8080/employee/get?empId='+empId;
+            $.ajax({
+                url: getEmpUrl,
+                type: 'GET',
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (data) {
+                    if (Array.isArray(data.employeeList) && data.employeeList[0]) {
+                        populateEmployeeForm(data.employeeList[0]);
+                        $('#empId').attr('disabled', true);
+                        $('#employeeModal').modal('show');
+                    } else {
+                        alert("Failed to load data!");
+                    }
+                },
+                error: function (e) {
+                    console.log('error: ' + JSON.stringify(e));
+                    alert('Failed to load data!')
+                }
+            });
+
+        });
+
+        $(document).on('click', '.emp-del-btn', function(e) {
+            var empId = $(this).val();
+            var deleteEmpUrl = 'http://localhost:8080/employee/delete?empId='+empId;
+            $.ajax({
+                url: deleteEmpUrl,
+                type: 'GET',
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (data) {
+                    loadEmployeeTableData();
+                },
+                error: function (e) {
+                    console.log('error: ' + JSON.stringify(e));
+                    alert('Failed to load data!')
+                }
+            });
+        });
+
+    });
+</script>
+
+</html>
