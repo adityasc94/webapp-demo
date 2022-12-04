@@ -25,6 +25,9 @@ public class EmployeeEntity {
     @Column(name = "trade", length = 100)
     private String trade;
 
+    @Column(name = "emp_bty", length = 100)
+    private String empBty;
+
     @Column(name = "emp_name", length = 100)
     private String empName;
 

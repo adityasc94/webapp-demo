@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS webapp.employee
     emp_id character varying(30) COLLATE pg_catalog."default" NOT NULL,
     emp_rank character varying(100) COLLATE pg_catalog."default",
     trade character varying(100) COLLATE pg_catalog."default",
-    emp_btr character varying(100) COLLATE pg_catalog."default",
+    emp_bty character varying(100) COLLATE pg_catalog."default",
     emp_name character varying(100) COLLATE pg_catalog."default",
     father_name character varying(100) COLLATE pg_catalog."default",
     blood_group character varying(100) COLLATE pg_catalog."default",

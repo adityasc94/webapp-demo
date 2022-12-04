@@ -6,22 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <script src="js/bootstrap.bundle-5.1.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-5.1.3.min.css" />
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <!-- Datatable -->
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.2.3/css/fixedHeader.dataTables.min.css">
+    <script src="js/jquery.dataTables-1.12.1.min.js"></script>
+    <script src="js/dataTables.fixedHeader-3.2.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables-1.12.1.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/fixedHeader.dataTables-3.2.3.min.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <!-- Datepicker -->
+    <script src="js/bootstrap-datepicker-1.9.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker-1.9.0.min.css">
 
-    <link rel="stylesheet" type="text/css" href="offcanvas.css">
+    <link rel="stylesheet" type="text/css" href="css/offcanvas.css">
 </head>
 
 <body>
@@ -39,7 +40,7 @@
         <!-- Button trigger modal -->
         <div class="col-md-12 text-center">
             <button type="button" id="emp-add-btn" class="btn btn-success mb-3">
-                <img class="bi" src="person-add.svg">
+                <img class="bi" src="images/person-add.svg">
                 Add New
             </button>
         </div>
@@ -53,9 +54,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="container-fluid">
+                        <div class="container">
                             <form class="row g-3" id="emp-form">
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label for="empId" class="form-label">Number</label>
                                     <input type="text" class="form-control" id="empId">
                                 </div>
@@ -67,7 +68,11 @@
                                     <label for="trade" class="form-label">Trade</label>
                                     <input type="text" class="form-control" id="trade">
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-2">
+                                    <label for="empBty" class="form-label">BTY</label>
+                                    <input type="text" class="form-control" id="empBty">
+                                </div>
+                                <div class="col-md-4">
                                     <label for="empName" class="form-label">Name</label>
                                     <input type="text" class="form-control" id="empName">
                                 </div>
@@ -641,6 +646,7 @@
                 <th>No</th>
                 <th>Trade</th>
                 <th>Rank</th>
+                <th>BTY</th>
                 <th>Name</th>
                 <th>Blood Group</th>
                 <th>DOB</th>
@@ -668,9 +674,9 @@
                 employee_table.clear().draw();
                 employee_table.rows.add(data.employeeList).draw();
             },
-            error: function (e) {
-                console.log('error: ' + JSON.stringify(e));
-                alert('Failed to load data!')
+            error: function (data) {
+                console.log('error: ' + JSON.stringify(data));
+                alert('Failed to load data! ' + data.responseJSON.message);
             }
         });
     }
@@ -680,6 +686,7 @@
             "id": $('#empId').val().trim(),
             "empRank": $('#empRank').val(),
             "trade": $('#trade').val(),
+            "empBty": $('#empBty').val(),
             "empName": $('#empName').val(),
             "fatherName": $('#fatherName').val(),
             "bloodGroup": $('#bloodGroup').val(),
@@ -791,6 +798,7 @@
         $('#empId').val(employee.id);
         $('#empRank').val(employee.empRank);
         $('#trade').val(employee.trade);
+        $('#empBty').val(employee.empBty);
         $('#empName').val(employee.empName);
         $('#fatherName').val(employee.fatherName);
         $('#bloodGroup').val(employee.bloodGroup);
@@ -923,16 +931,17 @@
                 {data: "id"},
                 {data: "empRank"},
                 {data: "trade"},
+                {data: "empBty"},
                 {data: "empName"},
                 {data: "bloodGroup"},
                 {data: "dateOfBirth"},
                 {data: "dateOfEntry"},
                 {data: "mobileNumOwn"},
                 {
-                    data: "id", width: "140px", render: function (data) {
-                        return '<button type="button" class="btn btn-secondary btn-sm mx-1 emp-view-btn" value="'+ data +'"><img src="eye.svg"></button>'
-                            + '<button type="button" class="btn btn-warning btn-sm mx-1 emp-edit-btn" value="'+ data +'"><img src="pencil-square.svg"></button>'
-                            + '<button type="button" class="btn btn-danger btn-sm mx-1 emp-del-btn" value="'+ data +'"><img src="trash.svg"></button>';
+                    data: "id", width: "150px", render: function (data) {
+                        return '<button type="button" class="btn btn-secondary btn-sm mx-1 emp-view-btn" value="'+ data +'"><img src="images/eye.svg"></button>'
+                            + '<button type="button" class="btn btn-warning btn-sm mx-1 emp-edit-btn" value="'+ data +'"><img src="images/pencil-square.svg"></button>'
+                            + '<button type="button" class="btn btn-danger btn-sm mx-1 emp-del-btn" value="'+ data +'"><img src="images/trash.svg"></button>';
                     }
                 }
             ],
@@ -1002,7 +1011,6 @@
                 "employee": {}
             };
             reqObj.employee = constructEmployeeObj();
-            console.log(JSON.stringify(reqObj));
             $.ajax({
                 type: 'POST',
                 url: url,
@@ -1010,13 +1018,12 @@
                 dataType: 'json',
                 contentType: 'application/json',
                 success:function(data){
-                    console.log(data);
                     $('#employeeModal').modal('hide');
                     loadEmployeeTableData();
                 },
-                error:function(data){
-                    console.log('error: ' + JSON.stringify(e));
-                    alert('Failed to add/update!')
+                error: function(data){
+                    console.log('error: ' + JSON.stringify(data));
+                    alert('Failed to add/update! ' + data.responseJSON.message);
                 }
             });
         });
@@ -1047,9 +1054,9 @@
                         alert("Failed to load data!");
                     }
                 },
-                error: function (e) {
-                    console.log('error: ' + JSON.stringify(e));
-                    alert('Failed to load data!')
+                error: function (data) {
+                    console.log('error: ' + JSON.stringify(data));
+                    alert('Failed to load data! ' + data.responseJSON.message);
                 }
             });
         });
@@ -1073,9 +1080,9 @@
                         alert("Failed to load data!");
                     }
                 },
-                error: function (e) {
-                    console.log('error: ' + JSON.stringify(e));
-                    alert('Failed to load data!')
+                error: function (data) {
+                    console.log('error: ' + JSON.stringify(data));
+                    alert('Failed to load data! ' + data.responseJSON.message);
                 }
             });
 
@@ -1092,9 +1099,9 @@
                 success: function (data) {
                     loadEmployeeTableData();
                 },
-                error: function (e) {
-                    console.log('error: ' + JSON.stringify(e));
-                    alert('Failed to load data!')
+                error: function (data) {
+                    console.log('error: ' + JSON.stringify(data));
+                    alert('Failed to load data! ' + data.responseJSON.message);
                 }
             });
         });

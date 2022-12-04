@@ -21,30 +21,23 @@ public class EmployeeService {
     @Autowired
     private EmployeeInfoRepository employeeRepository;
 
-    public ResponseObject addEmployee(RequestObject request) {
-        ResponseObject response = new ResponseObject();
+    public void addEmployee(RequestObject request) {
         EmployeeEntity employeeEntity = mapModelToEntity(request.getEmployeeModel());
         employeeRepository.save(employeeEntity);
-        return response;
     }
 
     @Transactional
-    public ResponseObject updateEmployee(RequestObject request) {
-        ResponseObject response = new ResponseObject();
+    public void updateEmployee(RequestObject request) {
         EmployeeEntity employeeEntity = mapModelToEntity(request.getEmployeeModel());
         employeeRepository.delete(employeeEntity);
         employeeRepository.save(employeeEntity);
-        return response;
     }
 
-    public ResponseObject deleteEmployee(String empId) {
-        ResponseObject response = new ResponseObject();
+    public void deleteEmployee(String empId) {
         employeeRepository.deleteById(empId);
-        return response;
     }
 
-    public ResponseObject getAllEmployees() {
-        ResponseObject response = new ResponseObject();
+    public List<EmployeeModel> getAllEmployees() {
         List<EmployeeModel> employeeModels = new ArrayList<>();
         List<EmployeeEntity> employeeEntities = employeeRepository.findAll();
         if (!CollectionUtils.isEmpty(employeeEntities)) {
@@ -53,20 +46,16 @@ public class EmployeeService {
                 employeeModels.add(employeeModel);
             });
         }
-        response.setEmployeeModelList(employeeModels);
-        return response;
+        return employeeModels;
     }
 
-    public ResponseObject getEmployee(String empId) {
-        ResponseObject response = new ResponseObject();
-        List<EmployeeModel> employeeModels = new ArrayList<>();
+    public EmployeeModel getEmployee(String empId) {
+        EmployeeModel employeeModel = null;
         EmployeeEntity employeeEntity = employeeRepository.findById(empId).orElse(null);
         if (Objects.nonNull(employeeEntity)) {
-            EmployeeModel employeeModel = mapEntityToModel(employeeEntity);
-            employeeModels.add(employeeModel);
+            employeeModel = mapEntityToModel(employeeEntity);
         }
-        response.setEmployeeModelList(employeeModels);
-        return response;
+        return employeeModel;
     }
 
 

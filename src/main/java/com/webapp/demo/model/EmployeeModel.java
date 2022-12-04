@@ -115,6 +115,9 @@ public class EmployeeModel {
 	@JsonProperty("trade")
 	private String trade;
 
+	@JsonProperty("empBty")
+	private String empBty;
+
 	@JsonProperty("civCase")
 	private String civCase;
 
@@ -129,4 +132,5 @@ public class EmployeeModel {
 
 	@JsonProperty("impApptsInService")
 	private String impApptsInService;
+
 }
