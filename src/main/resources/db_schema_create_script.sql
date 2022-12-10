@@ -193,9 +193,9 @@ ALTER TABLE IF EXISTS webapp.employee_punishment
 
 
 
--- Table: webapp.employee_sports
+-- Table: webapp.employee_sport
 
--- DROP TABLE IF EXISTS webapp.employee_sports;
+-- DROP TABLE IF EXISTS webapp.employee_sport;
 
 CREATE TABLE IF NOT EXISTS webapp.employee_sport
 (
@@ -204,8 +204,8 @@ CREATE TABLE IF NOT EXISTS webapp.employee_sport
     sport_played character varying(100) COLLATE pg_catalog."default",
     sport_level character varying(100) COLLATE pg_catalog."default",
     remarks character varying(100) COLLATE pg_catalog."default",
-    CONSTRAINT employee_sports_pkey PRIMARY KEY (id),
-    CONSTRAINT employee_sports_emp_id_fkey FOREIGN KEY (emp_id)
+    CONSTRAINT employee_sport_pkey PRIMARY KEY (id),
+    CONSTRAINT employee_sport_emp_id_fkey FOREIGN KEY (emp_id)
         REFERENCES webapp.employee (emp_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
@@ -214,5 +214,5 @@ CREATE TABLE IF NOT EXISTS webapp.employee_sport
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS webapp.employee_sports
+ALTER TABLE IF EXISTS webapp.employee_sport
     OWNER to postgres;
